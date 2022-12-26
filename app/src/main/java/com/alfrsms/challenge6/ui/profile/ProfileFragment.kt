@@ -1,0 +1,163 @@
+package com.alfrsms.challenge6.ui.profile
+
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Bundle
+import android.util.Base64
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import androidx.work.WorkInfo
+import com.alfrsms.challenge6.R
+import com.alfrsms.challenge6.data.local.preference.PreferenceUser
+import com.alfrsms.challenge6.databinding.FragmentProfileBinding
+import com.alfrsms.challenge6.ui.MainActivity
+import com.alfrsms.challenge6.worker.KEY_IMAGE_URI
+import com.bumptech.glide.Glide
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class ProfileFragment : Fragment() {
+
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by viewModels()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observeData()
+        setOnClickListener()
+        viewModel.outputWorkInfos.observe(viewLifecycleOwner, workInfosObserver())
+    }
+
+    private fun setOnClickListener() {
+        binding.btnUpdateProfile.setOnClickListener {
+            val options = NavOptions.Builder()
+                .setPopUpTo(R.id.profileFragment, false)
+                .build()
+            findNavController().navigate(R.id.action_profileFragment_to_updateProfileFragment, null, options)
+        }
+        binding.btnLogout.setOnClickListener {
+            viewModel.setUserLogin(false)
+            startActivity(Intent(requireContext(), MainActivity::class.java))
+            activity?.finish()
+        }
+        binding.btnBlurVersion.setOnClickListener {
+            viewModel.applyBlur(3)
+        }
+        binding.btnSeeBlur.setOnClickListener {
+            viewModel.outputUri?.let { currentUri ->
+                val actionView = Intent(Intent.ACTION_VIEW, currentUri)
+                startActivity(actionView)
+            } ?: kotlin.run {
+                Toast.makeText(requireContext(), "Add your profile image first", Toast.LENGTH_LONG).show()
+            }
+        }
+        binding.ivProfileImage.setOnClickListener {
+            Toast.makeText(requireContext(), "Click update profile to update your profile image", Toast.LENGTH_LONG).show()
+        }
+        binding.btnCancel.setOnClickListener {
+            viewModel.cancelWork()
+        }
+    }
+
+
+    private fun workInfosObserver(): Observer<List<WorkInfo>> {
+        return Observer { listOfWorkInfo ->
+            if (listOfWorkInfo.isNullOrEmpty()) {
+                return@Observer
+            }
+
+            // We only care about the one output status.
+            // Every continuation has only one worker tagged TAG_OUTPUT
+            val workInfo = listOfWorkInfo[0]
+
+            if (workInfo.state.isFinished) {
+                showWorkFinished()
+                // Normally this processing, which is not directly related to drawing views on
+                // screen would be in the ViewModel. For simplicity we are keeping it here.
+                val outputImageUri = workInfo.outputData.getString(KEY_IMAGE_URI)
+
+                // If there is an output file show "See File" button
+                if (!outputImageUri.isNullOrEmpty()) {
+                    viewModel.setOutputUri(outputImageUri)
+                    binding.btnSeeBlur.visibility = View.VISIBLE
+                }
+            } else {
+                showWorkInProgress()
+            }
+        }
+    }
+    private fun showWorkInProgress() {
+        with(binding) {
+            pbLoading.visibility = View.VISIBLE
+            btnCancel.visibility = View.VISIBLE
+            btnBlurVersion.visibility = View.GONE
+            btnSeeBlur.visibility = View.GONE
+        }
+    }
+
+
+    private fun showWorkFinished() {
+        with(binding) {
+            pbLoading.visibility = View.GONE
+            btnCancel.visibility = View.GONE
+            btnBlurVersion.visibility = View.VISIBLE
+        }
+    }
+
+    private fun observeData() {
+        viewModel.getUser().observe(viewLifecycleOwner) {
+            bindDataToView(it)
+        }
+    }
+
+    private fun bindDataToView(user: PreferenceUser?) {
+        user?.let {
+            binding.apply {
+                tvUsername.text = getString(R.string.profile_username, user.username)
+                tvEmail.text = getString(R.string.profile_email, user.email)
+                tvFullName.text = getString(R.string.profile_full_name, user.fullName)
+                tvDateOfBirth.text = getString(R.string.profile_date_of_birth, user.dateOfBirth)
+                tvAddress.text = getString(R.string.profile_address, user.address)
+
+                user.profileImage?.let {
+                    if (it.isEmpty().not()) {
+                        Glide.with(this@ProfileFragment)
+                            .load(convertStringToBitmap(it))
+                            .into(binding.ivProfileImage)
+                        viewModel.getImageUri(requireActivity(), convertStringToBitmap(it))
+                    }
+                }
+            }
+        }
+    }
+
+    private fun convertStringToBitmap(string: String): Bitmap {
+        val imageBytes = Base64.decode(string, 0)
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+}

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.alfrsms.challange5.ui.login.LoginFragment"
+        android:name="com.alfrsms.challenge6.ui.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.alfrsms.challange5.ui.register.RegisterFragment"
+        android:name="com.alfrsms.challenge6.ui.register.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register" >
         <action

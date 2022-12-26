@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Challange5</string>
+    <string name="app_name">Challange6</string>
     <string name="login">Masuk</string>
     <string name="username">Username</string>
     <string name="hint_password">Kata sandi</string>
@@ -20,9 +20,13 @@
     <string name="title_update">Perbarui</string>
     <string name="title_overview">Ringkasan</string>
     <string name="title_genre_lang_release">%1$s | %2$s | %3$s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_update_profile">Perbarui Profil</string>
     <string name="title_official_website">Website resmi:</string>
-    <string name="movie">Film</string>
+    <string name="hint_search">Cari</string>
+    <string name="content_profile_image">Foto profil user</string>
+    <string name="profile_username">Username: \n$1%s</string>
+    <string name="profile_email">Email: \n$1%s</string>
+    <string name="profile_full_name">Nama lengkap: \n$1%s</string>
+    <string name="profile_date_of_birth">Tanggal lahir: \n$1%s</string>
+    <string name="profile_address">Alamat: \n$1%s</string>
 </resources>
