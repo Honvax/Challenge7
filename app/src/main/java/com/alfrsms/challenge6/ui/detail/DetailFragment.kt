@@ -8,7 +8,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.alfrsms.challange5.ui.detail.DetailFragmentArgs
 import com.alfrsms.challange5.ui.detail.DetailViewModel
 import com.alfrsms.challenge6.data.network.model.detail.DetailMovie
 import com.alfrsms.challenge6.data.network.model.detail.Genre

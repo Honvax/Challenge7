@@ -1,7 +1,7 @@
 package com.alfrsms.challenge6.di
 
 import android.content.Context
-import com.alfrsms.challange5.BuildConfig
+import com.alfrsms.challenge6.BuildConfig
 import com.alfrsms.challenge6.data.network.service.MovieApiService
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module

@@ -10,11 +10,16 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.alfrsms.challenge6.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var analytics: FirebaseAnalytics
     private lateinit var navController: NavController
     private lateinit var bottomNav: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +49,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.updateProfileFragment -> hideBottomNav(true)
                 else -> hideBottomNav(false)
             }
+            analytics = Firebase.analytics
         }
     }
 

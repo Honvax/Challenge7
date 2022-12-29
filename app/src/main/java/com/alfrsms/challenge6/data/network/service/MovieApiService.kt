@@ -1,6 +1,6 @@
 package com.alfrsms.challenge6.data.network.service
 
-import com.alfrsms.challange5.BuildConfig
+import com.alfrsms.challenge6.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.alfrsms.challenge6.data.network.model.detail.DetailMovie
 import com.alfrsms.challenge6.data.network.model.popular.Popular

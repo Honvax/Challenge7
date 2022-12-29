@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="TODO" />
 
 </androidx.cardview.widget.CardView>

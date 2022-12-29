@@ -1,0 +1,121 @@
+{
+  "project_info": {
+    "project_number": "686604863571",
+    "project_id": "challenge7-ecbc9",
+    "storage_bucket": "challenge7-ecbc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686604863571:android:4c54bde6d9d31f1c4c9ea6",
+        "android_client_info": {
+          "package_name": "alfrsms.challenge6.free"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686604863571-rpf98dvbburdrir1m0r18qc60abar6kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "alfrsms.challenge6.free",
+            "certificate_hash": "fcae70c7cb22f10036500c541f0f46042fceca3e"
+          }
+        },
+        {
+          "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1b_c13uzQZbE4WKtGlXIhMfE3w1xJmmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686604863571:android:67a141136590d0f14c9ea6",
+        "android_client_info": {
+          "package_name": "alfrsms.challenge6.pro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686604863571-as5j9pj92j5tqdc5bcek98pbk6sb96ep.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "alfrsms.challenge6.pro",
+            "certificate_hash": "fcae70c7cb22f10036500c541f0f46042fceca3e"
+          }
+        },
+        {
+          "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1b_c13uzQZbE4WKtGlXIhMfE3w1xJmmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686604863571:android:ea02ec22e05ce0ba4c9ea6",
+        "android_client_info": {
+          "package_name": "com.alfrsms.challenge6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686604863571-85mhdd87tepjmdoeu9ej9tvtuu03e2i5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.alfrsms.challenge6",
+            "certificate_hash": "fcae70c7cb22f10036500c541f0f46042fceca3e"
+          }
+        },
+        {
+          "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1b_c13uzQZbE4WKtGlXIhMfE3w1xJmmk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686604863571-cammnoklp0l80j9dnba713lopv5spuvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

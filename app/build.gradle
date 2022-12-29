@@ -6,6 +6,8 @@ plugins {
     id 'androidx.navigation.safeargs'
     id 'kotlin-parcelize'
     id 'com.google.dagger.hilt.android'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -38,17 +40,28 @@ android {
     buildFeatures {
         viewBinding true
     }
-
     def keyPropertiesFile = rootProject.file("key.properties")
     def keyProperties = new Properties()
     keyProperties.load(new FileInputStream(keyPropertiesFile))
 
-    flavorDimensions 'default'
+    flavorDimensions 'default', 'version'
     productFlavors {
         production {
             dimension = 'default'
             buildConfigField("String", "BASE_URL", "\"${keyProperties.getProperty("BASE_URL")}\"")
             buildConfigField("String", "API_KEY", "\"${keyProperties.getProperty("API_KEY")}\"")
+        }
+        free {
+            dimension = "version"
+            applicationIdSuffix ".free"
+            versionNameSuffix ".free"
+            manifestPlaceholders = [variant: "Free"]
+        }
+        pro {
+            dimension = "version"
+            applicationIdSuffix ".pro"
+            versionNameSuffix ".pro"
+            manifestPlaceholders = [variant: "Pro"]
         }
     }
 }
@@ -56,8 +69,6 @@ android {
 kapt {
     correctErrorTypes true
 }
-
-
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -66,6 +77,33 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+
+    //firebase
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+    implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
+    implementation 'androidx.test:core-ktx:1.5.0'
+    implementation 'androidx.test.ext:junit-ktx:1.1.4'
+
+    //special testing
+    testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
+
+    //testing
+    testImplementation "io.mockk:mockk:1.13.2"
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.arch.core:core-testing:2.1.0'
+    testImplementation 'org.mockito:mockito-core:4.6.0'
+    testImplementation 'org.mockito:mockito-inline:4.4.0'
+    testImplementation "androidx.arch.core:core-testing:2.1.0" // InstantTaskExecutorRule
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.2"
+    //TestCoroutineDispatcher
+
+    //dagger hilt
+    implementation "com.google.dagger:hilt-android:2.44"
+    testImplementation 'junit:junit:4.13.2'
 
     //dagger hilt
     implementation "com.google.dagger:hilt-android:2.44"
@@ -115,7 +153,7 @@ dependencies {
 
     //Glide image loader
     implementation 'com.github.bumptech.glide:glide:4.14.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.0'
+    kapt 'com.github.bumptech.glide:compiler:4.14.0'
 
     // coil image loader
     implementation 'io.coil-kt:coil:2.2.1'
@@ -123,6 +161,6 @@ dependencies {
     // chucker interceptor
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
-    // RecylerView
+
     implementation "androidx.recyclerview:recyclerview:1.3.0-rc01"
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Challange6</string>
+    <string name="app_name">Free Challange6</string>
     <string name="login">Masuk</string>
     <string name="username">Username</string>
     <string name="hint_password">Kata sandi</string>
@@ -19,6 +19,7 @@
     <string name="title_logout">Keluar</string>
     <string name="title_update">Perbarui</string>
     <string name="title_overview">Ringkasan</string>
+    <string name="movie">Film</string>
     <string name="title_genre_lang_release">%1$s | %2$s | %3$s</string>
     <string name="title_update_profile">Perbarui Profil</string>
     <string name="title_official_website">Website resmi:</string>

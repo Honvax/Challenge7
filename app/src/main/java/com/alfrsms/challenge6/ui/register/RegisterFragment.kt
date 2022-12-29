@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import com.alfrsms.challange5.ui.register.RegisterFragmentDirections
 import com.alfrsms.challenge6.R
 import com.alfrsms.challenge6.data.local.preference.PreferenceUser
 import com.alfrsms.challenge6.databinding.FragmentRegisterBinding
